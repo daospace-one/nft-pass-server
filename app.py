@@ -1,18 +1,13 @@
 # DAO SPACE 的 NFT PASS 项目文件
 # 本文件混合了后端验证和链上验证的代码
 
-from audioop import add
 from dataclasses import dataclass
-from email import header, message
-from tkinter.tix import Tree
-from xmlrpc.client import Boolean, DateTime
 from eth_account import Account
 from flask import Flask, request
 import json
 import datetime
 from typing import Any, List
 from web3 import Web3
-from hexbytes import HexBytes
 from eth_account.messages import encode_defunct
 from flask_cors import CORS
 import requests
@@ -129,7 +124,7 @@ class PassManager():
             passes_data = json.load(f)
         return passes_data['pass_data']
 
-    def get_pass(id, tips=None) -> Pass | None:
+    def get_pass(id, tips=None):
         '''获取指定通行证
 
         Params:
@@ -235,7 +230,7 @@ class PassManager():
             else:
                 pass
 
-    def available_check_on_chain(id, address) -> Boolean:
+    def available_check_on_chain(id, address):
         '''检查是否可用
 
         Params: 
@@ -244,7 +239,7 @@ class PassManager():
         Return:
         是否可用: bool
         '''
-        contract_address = "0xce6685530FbA7cC34538149B2278e213Ce73FcDa"
+        contract_address = "0x1c9CF0E5473914A0e705e8Cf0BdD3EfbbFe17E48"
         abi_path = "./contracts/nft_pass.json"
         file = open(abi_path, "r")
         data = file.read()
@@ -274,7 +269,7 @@ class PassManager():
         # 跳过了时间戳验证
         return True
 
-    def signature_check(text, signature, address) -> Boolean:
+    def signature_check(text, signature, address):
         '''验证签名
 
         Params: 
@@ -297,7 +292,7 @@ class PassManager():
             print("Wrong format for signature verification.")
             return False
 
-    def nft_check_ankr(id, address, contractAddress='0x43f5bAc85d84f6cc4f4d838B1f523f511497973D'):
+    def nft_check_ankr(id, address, contractAddress='0x1c9CF0E5473914A0e705e8Cf0BdD3EfbbFe17E48'):
         '''验证 NFT
         包括持有者和元数据'''
         # url = 'https://rpc.ankr.com/moonbeam/'
@@ -328,7 +323,7 @@ class PassManager():
         res = requests.post(url=url, json=data, headers=headers)
         print(res.text, res.status_code)
 
-    def nft_check(id, address, contractAddress="0x43f5bAc85d84f6cc4f4d838B1f523f511497973D"):
+    def nft_check(id, address, contractAddress="0x1c9CF0E5473914A0e705e8Cf0BdD3EfbbFe17E48"):
         '''验证 NFT
         包括持有者和元数据'''
         # url = 'https://moonbeamapi.nftscan.com/api/v2/asset/collection/amount'
