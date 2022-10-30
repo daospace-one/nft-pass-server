@@ -239,7 +239,7 @@ class PassManager():
         Return:
         是否可用: bool
         '''
-        contract_address = "0x1c9CF0E5473914A0e705e8Cf0BdD3EfbbFe17E48"
+        contract_address = "0xF94AEc47Decd15655755b4feb0D7399b7fEE3145"
         abi_path = "./contracts/nft_pass.json"
         file = open(abi_path, "r")
         data = file.read()
@@ -292,7 +292,7 @@ class PassManager():
             print("Wrong format for signature verification.")
             return False
 
-    def nft_check_ankr(id, address, contractAddress='0x1c9CF0E5473914A0e705e8Cf0BdD3EfbbFe17E48'):
+    def nft_check_ankr(id, address, contractAddress='0xF94AEc47Decd15655755b4feb0D7399b7fEE3145'):
         '''验证 NFT
         包括持有者和元数据'''
         # url = 'https://rpc.ankr.com/moonbeam/'
@@ -323,7 +323,7 @@ class PassManager():
         res = requests.post(url=url, json=data, headers=headers)
         print(res.text, res.status_code)
 
-    def nft_check(id, address, contractAddress="0x1c9CF0E5473914A0e705e8Cf0BdD3EfbbFe17E48"):
+    def nft_check(id, address, contractAddress="0xF94AEc47Decd15655755b4feb0D7399b7fEE3145"):
         '''验证 NFT
         包括持有者和元数据'''
         # url = 'https://moonbeamapi.nftscan.com/api/v2/asset/collection/amount'
