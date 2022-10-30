@@ -14,7 +14,9 @@ import requests
 
 app = Flask(__name__)
 CORS(app, resources=r'/*')
-rpc_endpoint = "https://rpc.api.moonbeam.network"
+# rpc_endpoint = "https://rpc.api.moonbeam.network"
+rpc_endpoint = "https://api.avax.network/ext/bc/C/rpc"
+
 w3 = Web3(Web3.HTTPProvider(rpc_endpoint))
 
 
